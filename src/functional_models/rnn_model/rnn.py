@@ -73,10 +73,21 @@ class RNNLM:
         self.b_q = tf.Variable(tf.zeros(self.vocab_size))   # Initialize output biases
 
 
-    def forward(self, x):
-        output, state = 0, 0
-        # output to output and state is the hidden state
-        return output, state
+    def forward(self, inputs, state):
+        if state is None:
+            # Initialize hidden state
+            pass
+        
+        else:
+            # unpack shape
+            pass
+        outputs = []
+        
+        for X in inputs:  # Shape of inputs: (num_steps, batch_size, num_inputs)
+            state = self.activation_function(tf.matmul(X, self.W_xh) +
+                         tf.matmul(state, self.W_hh) + self.b_h)
+            outputs.append(state)
+        return outputs, state
 
     def train():
         pass
